@@ -1,0 +1,28 @@
+tags:
+  - Auth
+summary: Logout user
+operationId: logoutUser
+description: 'Logout a user'
+security:
+  - bearerAuth: []
+parameters:
+  - in: cookie
+    name: sessionId
+    schema:
+      type: string
+    required: true
+    description: The session ID from the cookie
+    example: 'j%3A%22667fbc6aca1f959e6f4efacf%22'
+  - in: cookie
+    name: refreshToken
+    schema:
+      type: string
+    required: true
+    description: The refresh token from the cookie
+    example: 'hfP76WlQAwMI7Dzh%2BbRBC6m%2FzIvY96Y7awZWbBHu'
+responses:
+  '204':
+    description: 'Successfully logged out the user'
+
+  '401':
+    $ref: '../../components/responses/401.yaml'

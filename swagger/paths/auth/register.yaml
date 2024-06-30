@@ -1,0 +1,64 @@
+tags:
+  - Auth
+summary: Register new user
+operationId: createUser
+description: 'Create a user with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+        properties:
+          name:
+            description: "User's name"
+            type: string
+            example: 'Andriana Petrenko'
+          email:
+            description: 'User email'
+            type: string
+            example: tajo@gmail.com
+          password:
+            description: "User's password"
+            type: string
+            example: 65e4decdd286
+responses:
+  '201':
+    description: 'Creates a new user'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully registered a user!
+            data:
+              type: object
+              properties:
+                _id:
+                  description: "User's id"
+                  type: string
+                  example: 65e4decdd286b30065d54af9
+                name:
+                  description: "User's name"
+                  type: string
+                  example: 'Oleg'
+                email:
+                  description: "User's email"
+                  type: string
+                  example: tajo@gmail.com
+  '409':
+    $ref: '../../components/responses/409.yaml'

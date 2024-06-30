@@ -1,0 +1,45 @@
+tags:
+  - Auth
+summary: Refresh user session
+operationId: refreshSession
+description: 'Refreshes the user session'
+security:
+  - bearerAuth: []
+parameters:
+  - in: cookie
+    name: sessionId
+    schema:
+      type: string
+    required: true
+    description: The session ID from the cookie
+    example: 'j%3A%22667fbc6aca1f959e6f4efacf%22'
+  - in: cookie
+    name: refreshToken
+    schema:
+      type: string
+    required: true
+    description: The refresh token from the cookie
+    example: 'hfP76WlQAwMI7Dzh%2BbRBC6m%2FzIvY96Y7awZWbBHu'
+responses:
+  '200':
+    description: Successfully refreshed a session
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully refreshed a session!
+            data:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  description: 'The new access token'
+                  example: 'tkntaXI2mXcEBe8tMjBYsvrJZeTUse7J+SJSNS2z'
+  '401':
+    $ref: '../../components/responses/401.yaml'
